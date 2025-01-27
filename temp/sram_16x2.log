@@ -1,0 +1,66 @@
+[2025-01-27 10:39:06.017655] |==============================================================================|
+[2025-01-27 10:39:06.017777] |=========                      OpenRAM v1.2.48                       =========|
+[2025-01-27 10:39:06.017820] |=========                                                            =========|
+[2025-01-27 10:39:06.017846] |=========               VLSI Design and Automation Lab               =========|
+[2025-01-27 10:39:06.017869] |=========        Computer Science and Engineering Department         =========|
+[2025-01-27 10:39:06.017893] |=========            University of California Santa Cruz             =========|
+[2025-01-27 10:39:06.017914] |=========                                                            =========|
+[2025-01-27 10:39:06.017935] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-01-27 10:39:06.017956] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-01-27 10:39:06.017977] |=========                See LICENSE for license info                =========|
+[2025-01-27 10:39:06.017997] |==============================================================================|
+[2025-01-27 10:39:06.018024] ** Start: 01/27/2025 10:39:06
+[2025-01-27 10:39:06.018049] Technology: sky130
+[2025-01-27 10:39:06.018071] Total size: 32 bits
+[2025-01-27 10:39:06.018097] Word size: 2
+Words: 16
+Banks: 1
+[2025-01-27 10:39:06.018122] RW ports: 2
+R-only ports: 0
+W-only ports: 0
+[2025-01-27 10:39:06.018146] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-01-27 10:39:06.018168] DRC/LVS/PEX is disabled (check_lvsdrc=True to enable).
+[2025-01-27 10:39:06.018189] Characterization is disabled (using analytical delay models) (analytical_delay=False to simulate).
+[2025-01-27 10:39:06.018212] Words per row: None
+[2025-01-27 10:39:06.018237] Output files are: 
+[2025-01-27 10:39:06.018259] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.lvs
+[2025-01-27 10:39:06.018279] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.sp
+[2025-01-27 10:39:06.018300] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.v
+[2025-01-27 10:39:06.018320] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.lib
+[2025-01-27 10:39:06.018340] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.py
+[2025-01-27 10:39:06.018361] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.html
+[2025-01-27 10:39:06.018381] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.log
+[2025-01-27 10:39:06.018401] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.lef
+[2025-01-27 10:39:06.018420] /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.gds
+[2025-01-27 10:39:06.405253] ** Submodules: 0.4 seconds
+[2025-01-27 10:39:06.408930] ** Placement: 0.0 seconds
+[2025-01-27 10:40:10.833322] ** Routing: 64.4 seconds
+[2025-01-27 10:40:10.855350] ** Verification: 0.0 seconds
+[2025-01-27 10:40:10.855425] ** SRAM creation: 64.8 seconds
+[2025-01-27 10:40:10.855462] SP: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.sp
+[2025-01-27 10:40:10.871780] ** Spice writing: 0.0 seconds
+[2025-01-27 10:40:10.871840] DELAY: Writing stimulus...
+[2025-01-27 10:40:10.950991] ** DELAY: 0.1 seconds
+[2025-01-27 10:40:10.955848] GDS: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.gds
+[2025-01-27 10:40:11.012919] ** GDS: 0.1 seconds
+[2025-01-27 10:40:11.012987] LEF: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.lef
+[2025-01-27 10:40:11.017473] ** LEF: 0.0 seconds
+[2025-01-27 10:40:11.017513] LVS: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.lvs.sp
+[2025-01-27 10:40:11.022896] ** LVS writing: 0.0 seconds
+[2025-01-27 10:40:11.022945] LIB: Characterizing... 
+[2025-01-27 10:40:11.078032] WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+[2025-01-27 10:40:11.238989] WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+[2025-01-27 10:40:11.339469] WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+[2025-01-27 10:40:11.439471] WARNING: file elmore.py: line 45: In analytical mode, all ports have the timing of the first read port.
+
+[2025-01-27 10:40:11.538853] ** Characterization: 0.5 seconds
+[2025-01-27 10:40:11.539049] Config: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.py
+[2025-01-27 10:40:11.539086] ** Config: 0.0 seconds
+[2025-01-27 10:40:11.543996] Datasheet: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.html
+[2025-01-27 10:40:11.545307] ** Datasheet: 0.0 seconds
+[2025-01-27 10:40:11.545349] Verilog: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp/sram_16x2.v
+[2025-01-27 10:40:11.545484] ** Verilog: 0.0 seconds
+[2025-01-27 10:40:11.545977] ** End: 65.5 seconds
