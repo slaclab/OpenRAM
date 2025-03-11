@@ -1,5 +1,5 @@
 # Data word size
-word_size = 2
+word_size = 32
 # Number of words in the memory
 num_words = 16
 
@@ -19,7 +19,7 @@ supply_voltages = [ 3.3 ]
 temperatures = [ 25 ]
 
 # Output directory for the results
-output_path = "temp"
+output_path = "temp2"
 # Output file base name
 output_name = "sram_16x2"
 
@@ -31,3 +31,8 @@ output_name = "sram_16x2"
 drc_name = "magic"
 lvs_name = "netgen"
 pex_name = "magic"
+# Activate LVS/DRC/PEX
+check_lvsdrc = True
+
+# Characterize
+analytical_delay=False

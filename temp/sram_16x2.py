@@ -1,5 +1,5 @@
 # Data word size
-word_size = 2
+word_size = 32
 # Number of words in the memory
 num_words = 16
 

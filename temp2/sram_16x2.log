@@ -1,0 +1,52 @@
+[2025-02-03 09:41:49.531605] |==============================================================================|
+[2025-02-03 09:41:49.531831] |=========                      OpenRAM v1.2.48                       =========|
+[2025-02-03 09:41:49.531877] |=========                                                            =========|
+[2025-02-03 09:41:49.531904] |=========               VLSI Design and Automation Lab               =========|
+[2025-02-03 09:41:49.531927] |=========        Computer Science and Engineering Department         =========|
+[2025-02-03 09:41:49.531949] |=========            University of California Santa Cruz             =========|
+[2025-02-03 09:41:49.531970] |=========                                                            =========|
+[2025-02-03 09:41:49.531990] |=========          Usage help: openram-user-group@ucsc.edu           =========|
+[2025-02-03 09:41:49.532011] |=========        Development help: openram-dev-group@ucsc.edu        =========|
+[2025-02-03 09:41:49.532032] |=========                See LICENSE for license info                =========|
+[2025-02-03 09:41:49.532053] |==============================================================================|
+[2025-02-03 09:41:49.532083] ** Start: 02/03/2025 09:41:49
+[2025-02-03 09:41:49.532107] Technology: sky130
+[2025-02-03 09:41:49.532129] Total size: 512 bits
+[2025-02-03 09:41:49.532168] Word size: 32
+Words: 16
+Banks: 1
+[2025-02-03 09:41:49.532192] RW ports: 2
+R-only ports: 0
+W-only ports: 0
+[2025-02-03 09:41:49.532215] DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+[2025-02-03 09:41:49.532237] Performing simulation-based characterization with Xyce
+[2025-02-03 09:41:49.532259] Trimming netlist to speed up characterization (trim_netlist=False to disable).
+[2025-02-03 09:41:49.532281] Words per row: None
+[2025-02-03 09:41:49.532308] Output files are: 
+[2025-02-03 09:41:49.532329] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.lvs
+[2025-02-03 09:41:49.532349] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.sp
+[2025-02-03 09:41:49.532369] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.v
+[2025-02-03 09:41:49.532388] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.lib
+[2025-02-03 09:41:49.532408] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.py
+[2025-02-03 09:41:49.532428] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.html
+[2025-02-03 09:41:49.532447] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.log
+[2025-02-03 09:41:49.532467] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.lef
+[2025-02-03 09:41:49.532487] /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.gds
+[2025-02-03 09:41:50.496790] ** Submodules: 0.9 seconds
+[2025-02-03 09:41:50.547508] ** Placement: 0.1 seconds
+[2025-02-03 09:46:29.837011] ** Routing: 279.3 seconds
+[2025-02-03 09:48:30.199362] ** Verification: 120.3 seconds
+[2025-02-03 09:48:30.199495] ** SRAM creation: 400.7 seconds
+[2025-02-03 09:48:30.199562] SP: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.sp
+[2025-02-03 09:48:30.274918] ** Spice writing: 0.1 seconds
+[2025-02-03 09:48:30.275017] DELAY: Writing stimulus...
+[2025-02-03 09:48:30.442229] ** DELAY: 0.2 seconds
+[2025-02-03 09:48:30.457838] GDS: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.gds
+[2025-02-03 09:48:30.610232] ** GDS: 0.2 seconds
+[2025-02-03 09:48:30.610301] LEF: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.lef
+[2025-02-03 09:48:30.642877] ** LEF: 0.0 seconds
+[2025-02-03 09:48:30.642938] LVS: Writing to /lscratch/fanals/asic-data-operation/OpenRAM/temp2/sram_16x2.lvs.sp
+[2025-02-03 09:48:30.661442] ** LVS writing: 0.0 seconds
+[2025-02-03 09:48:30.661500] LIB: Characterizing... 
+[2025-02-03 14:56:02.040915] ERROR: file delay.py: line 918: Sense amp enable timing error. Increase the delay chain through the configuration file.
+
