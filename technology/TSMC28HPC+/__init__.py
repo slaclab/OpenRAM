@@ -15,11 +15,12 @@ import sys
 import os
 from openram import debug
 
-TECHNOLOGY = "freepdk45"
+TECHNOLOGY = "TSMC28_PDK"
 
 ##########################
-# Cadence FreePDK45 paths
-#PDK_PATH=os.environ.get("FREEPDK45")
+# *** Below doesn't work for tsmcN28. Keep it commented ***
+# Cadence tsmcN28 paths
+#PDK_PATH=os.environ.get("tsmcN28")
 #if PDK_PATH==None:
 #    debug.error("Must define FREEPDK45 to point to PDK.", -1)
 #PDK_DIR=os.path.abspath(os.path.expanduser(PDK_PATH))
@@ -33,13 +34,13 @@ TECHNOLOGY = "freepdk45"
 #OpenRAM Paths
 
 try:
-    DRCLVS_HOME = os.path.abspath(os.environ.get("DRCLVS_HOME"))
+    DRCLVS_HOME = os.path.abspath(os.environ.get("CALIBRE_HOME"))
 except:
-    DRCLVS_HOME = "{0}/tech".format(os.path.dirname(__file__))
+    print("Export the environment variable CALIBRE_HOME")
 
-# If you are using Cadence, you should set the DRCLVS_HOME environment variable
-# to the FreePDK45 PDK location:
-# DRCLVS_HOME= PDK_DIR+"/ncsu_basekit/techfile/calibre"
+# If you are using Cadence, you should set the CALIBRE_HOME environment variable
+# to the tsmcN28 location:
+# DRCLVS_HOME= PDK_DIR+"Calibre"
 os.environ["DRCLVS_HOME"] = DRCLVS_HOME
 
 os.environ["SPICE_MODEL_DIR"] = "{0}/models/tran_models".format(os.path.dirname(__file__))
