@@ -13,7 +13,7 @@ from openram import drc as d
 #from drc.custom_layer_properties import layer_properties
 
 """
-File containing the process technology parameters for FreePDK 45nm.
+File containing the process technology parameters for TSMC 28nm.
 """
 
 ###################################################
@@ -53,7 +53,7 @@ GDS = {}
 #1, since you use more than 1 database unit per user unit. To
 #calculate the size of a user unit in meters, divide the second number
 #by the first."
-GDS["unit"] = (0.0005,1e-9)
+GDS["unit"] = (0.005,1e-6)
 # default label zoom
 GDS["zoom"] = 0.05
 
@@ -61,18 +61,19 @@ GDS["zoom"] = 0.05
 # Interconnect stacks
 ###################################################
 
-poly_stack = ("poly", "contact", "m1")
-active_stack = ("active", "contact", "m1")
-m1_stack = ("m1", "via1", "m2")
-m2_stack = ("m2", "via2", "m3")
-m3_stack = ("m3", "via3", "m4")
+poly_stack = ("PO", "CO", "M1")
+active_stack = ("OD", "CO", "M1")
+m1_stack = ("M1", "VIA1", "M2")
+m2_stack = ("M2", "VIA2", "M3")
+m3_stack = ("M3", "VIA3", "M4")
 
-layer_indices = {"poly": 0,
-                 "active": 0,
-                 "m1": 1,
-                 "m2": 2,
-                 "m3": 3,
-                 "m4": 4}
+#why do we need this indices?
+layer_indices = {"PO": 0,
+                 "OD": 0,
+                 "M1": 1,
+                 "M2": 2,
+                 "M3": 3,
+                 "M4": 4}
 
 # The FEOL stacks get us up to m1
 feol_stacks = [poly_stack,
@@ -85,12 +86,12 @@ beol_stacks = [m1_stack,
 
 layer_stacks = feol_stacks + beol_stacks
 
-preferred_directions = {"poly": "V",
-                        "active": "V",
-                        "m1": "H",
-                        "m2": "V",
-                        "m3": "H",
-                        "m4": "V"}
+preferred_directions = {"PO": "V",
+                        "OD": "V",
+                        "M1": "H",
+                        "M2": "V",
+                        "M3": "H",
+                        "M4": "V"}
 ###################################################
 # Power grid
 ###################################################
@@ -103,73 +104,82 @@ power_grid = m3_stack
 
 # Create the GDS layer map using internal names
 layer = {}
-layer["active"]  = (1, 0)
-layer["pwell"]   = (2, 0)
-layer["nwell"]   = (3, 0)
-layer["nimplant"]= (4, 0)
-layer["pimplant"]= (5, 0)
-layer["vtg"]     = (6, 0)
-layer["vth"]     = (7, 0)
-layer["thkox"]   = (8, 0)
-layer["poly"]    = (9, 0)
-layer["contact"] = (10, 0)
-layer["m1"]  = (11, 0)
-layer["via1"]    = (12, 0)
-layer["m2"]  = (13, 0)
-layer["via2"]    = (14, 0)
-layer["m3"]  = (15, 0)
-layer["via3"]    = (16, 0)
-layer["m4"]  = (17, 0)
-layer["via4"]    = (18, 0)
-layer["m5"]  = (19, 0)
-layer["via5"]    = (20, 0)
-layer["m6"]  = (21, 0)
-layer["via6"]    = (22, 0)
-layer["m7"]  = (23, 0)
-layer["via7"]    = (24, 0)
-layer["m8"]  = (25, 0)
-layer["via8"]    = (26, 0)
-layer["m9"]  = (27, 0)
-layer["via9"]    = (28, 0)
-layer["m10"] = (29, 0)
-layer["text"]    = (239, 0)
-layer["boundary"]= (239, 0)
+layer["OD"]     = (6, 0)
+layer["PW"]     = (2, 0)
+layer["NW"]     = (3, 0)
+layer["NP"]     = (26, 0)
+layer["PP"]     = (25, 0)
+layer["VTUL_N"] = (151, 0)
+layer["VTUL_P"] = (152, 0)
+layer["VTL_N"]  = (12, 0)
+layer["VTL_P"]  = (13, 0)
+layer["VTH_N"]  = (7, 0)
+layer["VTH_P"]  = (7, 0)
+#layer["thkox"]   = (8, 0)
+layer["PO"]     = (17, 0)
+layer["PO1"]    = (17, 7)
+layer["CO"]     = (30, 0)
+layer["M1"]     = (31, 0)
+layer["VIA1"]   = (51, 0)
+layer["M2"]     = (32, 0)
+layer["VIA2"]   = (52, 0)
+layer["M3"]     = (33, 0)
+layer["VIA3"]   = (53, 0)
+layer["M4"]     = (34, 0)
+layer["VIA4"]   = (54, 0)
+layer["M5"]     = (35, 0)
+layer["VIA5"]   = (55, 0)
+layer["M6"]     = (36, 0)
+layer["VIA6"]   = (56, 20)
+layer["M7"]     = (37, 0)
+layer["VIA7"]   = (57, 40)
+layer["M8"]     = (38, 0)
+layer["VIA8"]   = (58, 60)
+layer["M9"]     = (39, 0)
+#layer["VIA9"]   = (28, 0)
+#layer["m10"] = (29, 0)
+layer["text"]   = (127, 0)
+layer["prBoundary"]= (108, 0)
+layer["AP"]     = (74, 0)
 
 use_purpose = {}
 
 # Layer names for external PDKs
 layer_names = {}
-layer_names["active"]  = "active"
-layer_names["pwell"]   = "pwell"
-layer_names["nwell"]   = "nwell"
-layer_names["nimplant"]= "nimplant"
-layer_names["pimplant"]= "pimplant"
-layer_names["vtg"]     = "vtg"
-layer_names["vth"]     = "vth"
-layer_names["thkox"]   = "thkox"
-layer_names["poly"]    = "poly"
-layer_names["contact"] = "contact"
-layer_names["m1"]      = "metal1"
-layer_names["via1"]    = "via1"
-layer_names["m2"]      = "metal2"
-layer_names["via2"]    = "via2"
-layer_names["m3"]      = "metal3"
-layer_names["via3"]    = "via3"
-layer_names["m4"]      = "metal4"
-layer_names["via4"]    = "via4"
-layer_names["m5"]      = "metal5"
-layer_names["via5"]    = "via5"
-layer_names["m6"]      = "metal6"
-layer_names["via6"]    = "via6"
-layer_names["m7"]      = "metal7"
-layer_names["via7"]    = "via7"
-layer_names["m8"]      = "metal8"
-layer_names["via8"]    = "via8"
-layer_names["m9"]      = "metal9"
-layer_names["via9"]    = "via9"
-layer_names["m10"]     = "metal10"
+layer_names["OD"]      = "OD"
+layer_names["PW"]      = "PW"
+layer_names["NW"]      = "NW"
+layer_names["NP"]      = "NP"
+layer_names["PP"]      = "PP"
+layer_names["VTUL_N"]  = "VTUL_N"
+layer_names["VTUL_P"]  = "VTUL_P"
+layer_names["VTL_N"]   = "VTL_N"
+layer_names["VTL_P"]   = "VTL_P"
+layer_names["VTH_N"]   = "VTH_N"
+layer_names["VTH_P"]   = "VTH_P"
+#layer_names["thkox"]   = "thkox"
+layer_names["PO"]      = "PO"
+layer_names["CO"]      = "CO"
+layer_names["M1"]      = "M1"
+layer_names["VIA1"]    = "VIA1"
+layer_names["M2"]      = "M2"
+layer_names["VIA2"]    = "VIA2"
+layer_names["M3"]      = "M3"
+layer_names["VIA3"]    = "VIA3"
+layer_names["M4"]      = "M4"
+layer_names["VIA4"]    = "VIA4"
+layer_names["M5"]      = "M5"
+layer_names["VIA5"]    = "VIA5"
+layer_names["M6"]      = "M6"
+layer_names["VIA6"]    = "VIA6"
+layer_names["M7"]      = "M7"
+layer_names["VIA7"]    = "VIA7"
+layer_names["M8"]      = "M8"
+layer_names["VIA8"]    = "VIA8"
+layer_names["M9"]      = "M9"
+layer_names["AP"]      = "AP"
 layer_names["text"]    = "text"
-layer_names["boundary"]= "boundary"
+layer_names["prBoundary"] = "prBoundary"
 
 ###################################################
 # DRC/LVS Rules Setup
@@ -177,220 +187,355 @@ layer_names["boundary"]= "boundary"
 
 #technology parameter
 parameter={}
-parameter["min_tx_size"] = 0.09
-parameter["beta"] = 3
+parameter["min_tx_size"] = 0.1
+parameter["beta"] = 15.85
 
-parameter["6T_inv_nmos_size"] = 0.205
-parameter["6T_inv_pmos_size"] = 0.09
-parameter["6T_access_size"] = 0.135
+parameter["6T_inv_nmos_size"] = 0.1
+parameter["6T_inv_pmos_size"] = 0.1
+parameter["6T_access_size"] = 0.1
 
-drclvs_home=os.environ.get("DRCLVS_HOME")
+drclvs_home=os.environ.get("CALIBRE_HOME")
 
-drc = d.design_rules("freepdk45")
+drc = d.design_rules("tsmcN28")
 
 #grid size
-drc["grid"] = 0.0025
+drc["grid"] = 0.005
 
 #DRC/LVS test set_up
-drc["drc_rules"]=drclvs_home + "/calibreDRC.rul"
-drc["lvs_rules"]=drclvs_home + "/calibreLVS.rul"
-drc["xrc_rules"]=drclvs_home + "/calibrexRC.rul"
-drc["layer_map"]=os.environ.get("OPENRAM_TECH") + "/freepdk45/layers.map"
+drc["drc_rules"]=TSMC28_PDK + "/Calibre/drc/CLN28HP_9M_5X1Y1Z1U_002.21a_SLAC.encrypt"
+drc["lvs_rules"]=TSMC28_PDK + "/Calibre/lvs/DFM_LVS_RC_CALIBRE_N28HP_1p9M_5X1Y1Z1U_ALRDL.v1.8_2p3a"
+drc["xrc_rules"]=TSMC28_PDK + "/Calibre/pex/xrc_mapping"
+drc["layer_map"]=os.environ.get("OPENRAM_TECH") + "/TSMC28HPC+/layers.map"
 
 # minwidth_tx with contact (no dog bone transistors)
-drc["minwidth_tx"] = 0.09
-drc["minlength_channel"] = 0.05
+drc["minwidth_tx"] = 0.1
+drc["minlength_channel"] = 0.03
 
-# WELL.2 Minimum spacing of nwell/pwell at different potential
-drc["pwell_to_nwell"] = 0.225
-# WELL.3 Minimum spacing of nwell/pwell at the same potential
-# WELL.4 Minimum width of nwell/pwell
-drc.add_layer("nwell",
-              width=0.2,
-              spacing=0.135)
-drc.add_layer("pwell",
-              width=0.2,
-              spacing=0.135)
+# NW.S.3, NW.S.4 Minimum spacing of nwell/pwell at different potential
+drc["NW_to_NW"] = 1
+# NW.S.1 Minimum spacing of nwell/pwell at the same potential
+# NW.W.1 Minimum width of nwell/pwell
+drc.add_layer("NW",
+              width=0.24,
+              spacing=0.24)
+drc.add_layer("PW",
+              width=0.24,
+              spacing=0.24)
 
-# POLY.1 Minimum width of poly
-# POLY.2 Minimum spacing of poly AND active
-drc.add_layer("poly",
+# PO.W.1 Minimum width of poly
+# PO.S.4 Minimum spacing of poly AND active
+drc.add_layer("PO",
+              width=0.03,
+              spacing=0.1)
+
+# PO.EX.1 Minimum poly extension beyond active
+drc["PO_extend_OD"]=0.08
+# Not a rule
+drc["PO_to_CO"]=0.0
+# PO.EX.1 Minimum enclosure of active around gate
+drc["OD_enclose_gate"]=0.08
+# PO.S.12 Minimum spacing of field poly to active
+drc["PO_to_OD"]=0.025
+# PO.S.4 Minimum Minimum spacing of field poly
+drc["PO_to_field_PO"]=0.1
+# PO.A.1
+drc["minarea_PO"]=0.0115
+
+# OD.W.1 Minimum width of active
+# OD.S.3 Minimum spacing of active
+drc.add_layer("OD",
               width=0.05,
-              spacing=0.14)
-
-# POLY.3 Minimum poly extension beyond active
-drc["poly_extend_active"]=0.055
-# Not a rule
-drc["poly_to_contact"]=0.075
-# POLY.4 Minimum enclosure of active around gate
-drc["active_enclose_gate"]=0.07
-# POLY.5 Minimum spacing of field poly to active
-drc["poly_to_active"]=0.05
-# POLY.6 Minimum Minimum spacing of field poly
-drc["poly_to_field_poly"]=0.075
-# Not a rule
-drc["minarea_poly"]=0.0
-
-# ACTIVE.1 Minimum width of active
-# ACTIVE.2 Minimum spacing of active
-drc.add_layer("active",
-              width=0.09,
               spacing=0.08)
-# ACTIVE.3 Minimum enclosure/spacing of nwell/pwell to active
-drc.add_enclosure("nwell",
-                  layer="active",
-                  enclosure=0.055)
-drc.add_enclosure("pwell",
-                  layer="active",
-                  enclosure=0.055)
+# NW.S.7 Minimum enclosure/spacing of nwell/pwell to active
+drc.add_enclosure("NW",
+                  layer="OD",
+                  enclosure=0.105)
+drc.add_enclosure("PW",
+                  layer="OD",
+                  enclosure=0.105)
 
-# IMPLANT.1 Minimum spacing of nimplant/ pimplant to channel
-drc["implant_to_channel"]=0.07
+# NP.S.6 / PP.S.6 Minimum spacing of nimplant/ pimplant to channel
+drc["PP_to_channel"]=0.16
+drc["NP_to_channel"]=0.16
+# NP.EN.1 /PP.EN.1 enclosure of OD
+drc.add_enclosure("NP",
+                  layer="OD",
+                  enclosure=0.065)
+drc.add_enclosure("PP",
+                  layer="OD",
+                  enclosure=0.065)
 # Not a rule
-drc.add_enclosure("implant",
-                  layer="active",
+drc.add_enclosure("NP",
+                  layer="CO",
                   enclosure=0)
-# Not a rule
-drc.add_enclosure("implant",
-                  layer="contact",
-                  enclosure=0)
-# IMPLANT.2 Minimum spacing of nimplant/ pimplant to contact
-drc["implant_to_contact"]=0.025
-# IMPLANT.3 Minimum width/ spacing of nimplant/ pimplant
-# IMPLANT.4 Minimum width/ spacing of nimplant/ pimplant
-drc.add_layer("implant",
-              width=0.045,
-              spacing=0.045)
+# CO.S.8 Minimum spacing of nimplant/ pimplant to contact
+drc["NP_to_CO"]=0.035
+drc["PP_to_CO"]=0.035
+# NP/PP.W.1 Minimum width/ spacing of nimplant/ pimplant
+# NP/PP.S.1 Minimum width/ spacing of nimplant/ pimplant
+drc.add_layer("NP",
+              width=0.16,
+              spacing=0.16)
+drc.add_layer("PP",
+              width=0.16,
+              spacing=0.16)
 
-# CONTACT.1 Minimum width of contact
-# CONTACT.2 Minimum spacing of contact
-drc.add_layer("contact",
-              width=0.065,
-              spacing=0.075)
-# CONTACT.4 Minimum enclosure of active around contact
-drc.add_enclosure("active",
-                  layer="contact",
-                  enclosure=0.005)
-
-# CONTACT.6 Minimum spacing of contact and gate
-drc["active_contact_to_gate"]=0.0375
-# CONTACT.7 Minimum spacing of contact and poly
-drc["poly_contact_to_gate"]=0.090
-
-# CONTACT.1 Minimum width of contact
-# CONTACT.2 Minimum spacing of contact
-drc.add_layer("contact",
-              width=0.065,
-              spacing=0.075)
-# CONTACT.5 Minimum enclosure of poly around contact
-drc.add_enclosure("poly",
-                  layer="contact",
-                  enclosure=0.005)
-# CONTACT.6 Minimum spacing of contact and gate
-drc["contact_to_gate"]=0.0375
-# CONTACT.7 Minimum spacing of contact and poly
-drc["contact_to_poly"]=0.090
-
-# METAL1.1 Minimum width of metal1
-# METAL1.2 Minimum spacing of metal1
-drc.add_layer("m1",
-              width=0.065,
-              spacing=0.065)
-
-# METAL1.3 Minimum enclosure around contact on two opposite sides
-drc.add_enclosure("m1",
-                  layer="contact",
-                  enclosure=0,
-                  extension=0.035)
-# METAL1.4 inimum enclosure around via1 on two opposite sides
-drc.add_enclosure("m1",
-                  layer="via1",
-                  enclosure=0,
-                  extension=0.035)
-
-# VIA1.1 Minimum width of via1
-# VIA1.2 Minimum spacing of via1
-drc.add_layer("via1",
-              width=0.065,
-              spacing=0.075)
-
-
-# METALINT.1 Minimum width of intermediate metal
-# METALINT.2 Minimum spacing of intermediate metal
-drc.add_layer("m2",
-              width=0.07,
+# CO.W.1 Minimum width of contact
+# CO.S.1 Minimum spacing of contact
+drc.add_layer("CO",
+              width=0.04,
               spacing=0.07)
+# CO.EN.1 Minimum enclosure of active around contact
+drc.add_enclosure("OD",
+                  layer="CO",
+                  enclosure=0.005)
 
-# METALINT.3 Minimum enclosure around via1 on two opposite sides
-drc.add_enclosure("m2",
-                  layer="via1",
+# CO.S.6 Minimum spacing of contact and gate
+drc["OD_contact_to_gate"]=0.035
+# CO.S.5 Minimum spacing of contact and poly
+drc["PO_contact_to_gate"]=0.04
+
+# # CONTACT.1 Minimum width of contact
+# # CONTACT.2 Minimum spacing of contact
+# drc.add_layer("contact",
+#               width=0.065,
+#               spacing=0.075)
+# CO.EN.5 Minimum enclosure of poly around contact
+drc.add_enclosure("PO",
+                  layer="CO",
+                  enclosure=0.015)
+# CO.S.6 Minimum spacing of contact and gate
+drc["contact_to_gate"]=0.035
+# CO.S.5 Minimum spacing of contact and poly
+drc["contact_to_poly"]=0.04
+
+# M1.W.1 Minimum width of metal1
+# M1.S.1 Minimum spacing of metal1
+# M1 has special rules
+drc.add_layer("M1",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.10, 0.22): 0.06,
+                                 (0.18, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+
+# M1.EN.2 Minimum enclosure around contact on two opposite sides
+drc.add_enclosure("M1",
+                  layer="CO",
                   enclosure=0,
-                  extension=0.035)
-
-# METALINT.4 Minimum enclosure around via[2-3] on two opposite sides
-drc.add_enclosure("m2",
-                  layer="via2",
+                  extension=0.02)
+# VIAx.EN.2 minimum enclosure around via1 on two opposite sides
+drc.add_enclosure("M1",
+                  layer="VIA1",
                   enclosure=0,
-                  extension=0.035)
+                  extension=0.03)
 
-# VIA2-3.1 Minimum width of Via[2-3]
-# VIA2-3.2 Minimum spacing of Via[2-3]
-drc.add_layer("via2",
-              width=0.065,
-              spacing=0.085)
+# VIAx.W.1 Minimum width of via1
+# VIAx.S.1 Minimum spacing of via1
+drc.add_layer("VIA1",
+              width=0.05,
+              spacing=0.08)
 
-# METALINT.1 Minimum width of intermediate metal
-# METALINT.2 Minimum spacing of intermediate metal
-# Minimum spacing of m3 wider than 0.09 & longer than 0.3=0.09
-# Minimum spacing of m3 wider than 0.27 & longer than 0.9=0.27
-# Minimum spacing of m3 wider than 0.5 & longer than 1.8=0.5
-# Minimum spacing of m3 wider than 0.9 & longer than 2.7=0.9
-# Minimum spacing of m3 wider than 1.5 & longer than 4.0=1.5
-drc.add_layer("m3",
-              width=0.07,
-              spacing=d.drc_lut({(0.00, 0.0): 0.07,
-                                 (0.09, 0.3): 0.09,
-                                 (0.27, 0.9): 0.27,
-                                 (0.50, 1.8): 0.5,
-                                 (0.90, 2.7): 0.9,
-                                 (1.50, 4.0): 1.5}))
-# METALINT.3 Minimum enclosure around via1 on two opposite sides
-drc.add_enclosure("m3",
-                  layer="via2",
+
+# Mx.W.1 Minimum width of intermediate metal
+# Mx.S.1 Minimum spacing of intermediate metal
+# Minimum spacing of Mx wider than 0.09 & longer than 0.22 = 0.06
+# Minimum spacing of Mx wider than 0.16 & longer than 0.22 = 0.1
+# Minimum spacing of Mx wider than 0.47 & longer than 0.47 = 0.13
+# Minimum spacing of Mx wider than 0.63 & longer than 0.63 = 0.15
+# Minimum spacing of Mx wider than 1.5  & longer than 1.5  = 0.5
+# Same applies to All Mx (M2 - M6)
+drc.add_layer("M2",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.09, 0.22): 0.06,
+                                 (0.16, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+
+# VIAx.EN.2 Minimum enclosure around via1 on two opposite sides
+drc.add_enclosure("M2",
+                  layer="VIA1",
                   enclosure=0,
-                  extension=0.035)
+                  extension=0.03)
 
-# METALINT.4 Minimum enclosure around via[2-3] on two opposite sides
-drc.add_enclosure("m3",
-                  layer="via3",
+# VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M2",
+                  layer="VIA2",
                   enclosure=0,
-                  extension=0.035)
+                  extension=0.03)
 
-# VIA2-3.1 Minimum width of Via[2-3]
-# VIA2-3.2 Minimum spacing of Via[2-3]
-drc.add_layer("via3",
-              width=0.07,
-              spacing=0.085)
+# VIAx.W.1 Minimum width of Via[x]
+# VIAx.S.1 Minimum spacing of Via[x]
+drc.add_layer("VIA2",
+              width=0.05,
+              spacing=0.08)
 
-# METALSMG.1 Minimum width of semi-global metal
-# METALSMG.2 Minimum spacing of semi-global metal
-# Minimum spacing of m4 wider than 0.27 & longer than 0.9=0.27
-# Minimum spacing of m4 wider than 0.5 & longer than 1.8=0.5
-# Minimum spacing of m4 wider than 0.9 & longer than 2.7=0.9
-# Minimum spacing of m4 wider than 1.5 & longer than 4.0=1.5
-drc.add_layer("m4",
-              width=0.14,
-              spacing=d.drc_lut({(0.00, 0.0): 0.14,
-                                 (0.27, 0.9): 0.27,
-                                 (0.50, 1.8): 0.5,
-                                 (0.90, 2.7): 0.9,
-                                 (1.50, 4.0): 1.5}))
-# METALSMG.3 Minimum enclosure around via[3-6] on two opposite sides
-drc.add_enclosure("m4",
-                  layer="via3",
-                  enclosure=0.0025)
+# M3 = Mx
+drc.add_layer("M3",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.09, 0.22): 0.06,
+                                 (0.16, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+#VIAx.EN.2 Minimum enclosure around via1 on two opposite sides
+drc.add_enclosure("M3",
+                  layer="VIA2",
+                  enclosure=0,
+                  extension=0.03)
 
-# Metal 5-10 are ommitted
+#VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M3",
+                  layer="VIA3",
+                  enclosure=0,
+                  extension=0.03)
+
+#VIAx.W.1 Minimum width of Via[x]
+#VIAx.S.4 Minimum spacing of Via[x]
+drc.add_layer("VIA3",
+              width=0.05,
+              spacing=0.08)
+
+# M4 = Mx
+drc.add_layer("M4",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.09, 0.22): 0.06,
+                                 (0.16, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+# VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M4",
+                  layer="VIA3",
+                  enclosure=0.03)
+
+#VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M4",
+                  layer="VIA4",
+                  enclosure=0,
+                  extension=0.03)
+
+#VIAx.W.1 Minimum width of Via[x]
+#VIAx.S.4 Minimum spacing of Via[x]
+drc.add_layer("VIA4",
+              width=0.05,
+              spacing=0.08)
+
+# M5 = Mx
+drc.add_layer("M5",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.09, 0.22): 0.06,
+                                 (0.16, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+# VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M5",
+                  layer="VIA4",
+                  enclosure=0.03)
+
+#VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M5",
+                  layer="VIA5",
+                  enclosure=0,
+                  extension=0.03)
+
+#VIAx.W.1 Minimum width of Via[x]
+#VIAx.S.4 Minimum spacing of Via[x]
+drc.add_layer("VIA5",
+              width=0.05,
+              spacing=0.08)
+
+# M6 = Mx
+drc.add_layer("M6",
+              width=0.05,
+              spacing=d.drc_lut({(0.00, 0.0): 0.05,
+                                 (0.09, 0.22): 0.06,
+                                 (0.16, 0.22): 0.1,
+                                 (0.47, 0.47): 0.13,
+                                 (0.63, 0.63): 0.15,
+                                 (1.50, 1.50): 0.5}))
+# VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M6",
+                  layer="VIA5",
+                  enclosure=0.03)
+
+#VIAx.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M6",
+                  layer="VIA6",
+                  enclosure=0,
+                  extension=0.03)
+
+#VIAx.W.1 Minimum width of Via[x]
+#VIAx.S.4 Minimum spacing of Via[x]
+drc.add_layer("VIA6",
+              width=0.05,
+              spacing=0.08)
+
+# M7 = My
+drc.add_layer("M7",
+              width=0.1,
+              spacing=d.drc_lut({(0.00, 0.0): 0.1,
+                                 (0.2, 0.38): 0.12,
+                                 (0.4, 0.4): 0.16,
+                                 (1.5, 1.5): 0.5,
+                                 (4.5, 4.5): 1.5}))
+# VIAy.EN.2 Minimum enclosure around via[x] on two opposite sides
+drc.add_enclosure("M7",
+                  layer="VIA6",
+                  enclosure=0.04)
+
+#VIAy.EN.2 Minimum enclosure around via[y] on two opposite sides
+drc.add_enclosure("M7",
+                  layer="VIA7",
+                  enclosure=0,
+                  extension=0.04)
+
+#VIAy.W.1 Minimum width of Via[y]
+#VIAy.S.3 Minimum spacing of Via[y]
+drc.add_layer("VIA7",
+              width=0.1,
+              spacing=0.13)
+
+# M8 = Mz
+drc.add_layer("M8",
+              width=0.4,
+              spacing=d.drc_lut({(0.00, 0.0): 0.4,
+                                 (1.5, 1.5): 0.5,
+                                 (4.5, 4.5): 1.5}))
+# VIAz.EN.2 Minimum enclosure around via[x,y] on two opposite sides
+drc.add_enclosure("M8",
+                  layer="VIA7",
+                  enclosure=0.08)
+
+#VIAz.EN.2 Minimum enclosure around via[z] on two opposite sides
+drc.add_enclosure("M8",
+                  layer="VIA8",
+                  enclosure=0,
+                  extension=0.08)
+
+#VIAz.W.1 Minimum width of Via[y]
+#VIAz.S.3 Minimum spacing of Via[y]
+drc.add_layer("VIA8",
+              width=0.36,
+              spacing=0.54)
+
+# M9 = Mu
+drc.add_layer("M9",
+              width=2.0,
+              spacing=d.drc_lut({(0.00, 0.0): 1.0,
+                                 (4.5, 4.5): 1.5}))
+# VIAu.EN.1 Minimum enclosure around via[u] on two opposite sides
+drc.add_enclosure("M9",
+                  layer="VIA8",
+                  enclosure=0.3)
 
 ###################################################
 # Spice Simulation Parameters
@@ -398,40 +543,36 @@ drc.add_enclosure("m4",
 
 #spice info
 spice = {}
-spice["nmos"] = "nmos_vtg"
-spice["pmos"] = "pmos_vtg"
+spice["nch"] = "nch_mac"
+spice["pch"] = "pch_mac"
 # This is a map of corners to model files
 SPICE_MODEL_DIR=os.environ.get("SPICE_MODEL_DIR")
-spice["fet_models"] = {"TT": [SPICE_MODEL_DIR + "/models_nom/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_nom/NMOS_VTG.inc"],
-                       "FF": [SPICE_MODEL_DIR + "/models_ff/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ff/NMOS_VTG.inc"],
-                       "SF": [SPICE_MODEL_DIR + "/models_ss/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ff/NMOS_VTG.inc"],
-                       "FS": [SPICE_MODEL_DIR + "/models_ff/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ss/NMOS_VTG.inc"],
-                       "SS": [SPICE_MODEL_DIR + "/models_ss/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ss/NMOS_VTG.inc"],
-                       "ST": [SPICE_MODEL_DIR + "/models_ss/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_nom/NMOS_VTG.inc"],
-                       "TS": [SPICE_MODEL_DIR + "/models_nom/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ss/NMOS_VTG.inc"],
-                       "FT": [SPICE_MODEL_DIR + "/models_ff/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_nom/NMOS_VTG.inc"],
-                       "TF": [SPICE_MODEL_DIR + "/models_nom/PMOS_VTG.inc", SPICE_MODEL_DIR + "/models_ff/NMOS_VTG.inc"],
+spice["fet_models"] = {"TT": [SPICE_MODEL_DIR + "mos_models"],
+                       "FF": [SPICE_MODEL_DIR + "mos_models"],
+                       "SF": [SPICE_MODEL_DIR + "mos_models"],
+                       "FS": [SPICE_MODEL_DIR + "mos_models"],
+                       "SS": [SPICE_MODEL_DIR + "mos_models"],
                        }
 
 #spice stimulus related variables
-spice["feasible_period"] = 5         # estimated feasible period in ns
-spice["supply_voltages"] = [0.9, 1.0, 1.1] # Supply voltage corners in [Volts]
-spice["nom_supply_voltage"] = 1.0    # Nominal supply voltage in [Volts]
-spice["rise_time"] = 0.005           # rise time in [Nano-seconds]
-spice["fall_time"] = 0.005           # fall time in [Nano-seconds]
+spice["feasible_period"] = 1         # estimated feasible period in ns
+spice["supply_voltages"] = [0.8, 0.9, 1.0] # Supply voltage corners in [Volts]
+spice["nom_supply_voltage"] = 0.9    # Nominal supply voltage in [Volts]
+spice["rise_time"] = 0.001           # rise time in [Nano-seconds]
+spice["fall_time"] = 0.001           # fall time in [Nano-seconds]
 spice["temperatures"] = [0, 25, 100] # Temperature corners (celcius)
 spice["nom_temperature"] = 25        # Nominal temperature (celcius)
 
 # analytical delay parameters
-spice["nom_threshold"] = 0.4     # Typical Threshold voltage in Volts
-spice["wire_unit_r"] = 0.25      # Unit wire resistance in ohms/square
-spice["wire_unit_c"] = 2.3e-15   # Unit wire capacitance F/um^2, calculated from PTM
-spice["min_tx_drain_c"] = 0.7    # Minimum transistor drain capacitance in ff
-spice["min_tx_gate_c"] = 0.2     # Minimum transistor gate capacitance in ff
-spice["dff_setup"] = 9        # DFF setup time in ps
-spice["dff_hold"] = 1         # DFF hold time in ps
-spice["dff_in_cap"] = 0.2091  # Input capacitance (D) [Femto-farad]
-spice["dff_out_cap"] = 2       # Output capacitance (Q) [Femto-farad]
+spice["nom_threshold"] = 0.245  # Typical Threshold voltage in Volts
+spice["wire_unit_r"] = 0.5e-3      # Unit wire resistance in ohms/square (for copper wire)
+spice["wire_unit_c"] = 0.5e-15   # Unit wire capacitance F/um^2, (for copper wire)
+spice["min_tx_drain_c"] = 0.1    # Minimum transistor drain capacitance in ff (~100aF)
+spice["min_tx_gate_c"] =  0.1    # Minimum transistor gate capacitance in ff  (~100aF)
+spice["dff_setup"] = 17.5        # DFF setup time in ps
+spice["dff_hold"] = 8.7         # DFF hold time in ps
+spice["dff_in_cap"] = 0.5493    # Input capacitance (D) [Femto-farad]
+spice["dff_out_cap"] = 118.93   # Output capacitance (Q) [Femto-farad]
 
 # analytical power parameters, many values are temporary
 spice["bitcell_leakage"] = 1     # Leakage power of a single bitcell in nW
@@ -477,12 +618,12 @@ spice["sa_transconductance"] = (spice["mobility_n"])*spice["cox"]*(parameter["sa
 # Technology Tool Preferences
 ###################################################
 
-#drc_name = "calibre"
-#lvs_name = "calibre"
-#pex_name = "calibre"
+drc_name = "calibre"
+lvs_name = "calibre"
+pex_name = "calibre"
 
-drc_name = "klayout"
-lvs_name = "klayout"
-pex_name = "klayout"
+#drc_name = "klayout"
+#lvs_name = "klayout"
+#pex_name = "klayout"
 
 blackbox_bitcell = False
