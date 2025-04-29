@@ -588,20 +588,20 @@ spice["default_event_frequency"] = 100     # Default event activity of every gat
 # Parameters related to sense amp enable timing and delay chain/RBL sizing
 parameter["le_tau"] = 2.25                  # In pico-seconds.
 parameter["cap_relative_per_ff"] = 7.5      # Units of Relative Capacitance/ Femto-Farad
-parameter["dff_clk_cin"] = 30.6             # relative capacitance
-parameter["6tcell_wl_cin"] = 3              # relative capacitance
-parameter["min_inv_para_delay"] = 2.4       # Tau delay units
-parameter["sa_en_pmos_size"] = 0.72         # micro-meters
-parameter["sa_en_nmos_size"] = 0.27         # micro-meters
-parameter["sa_inv_pmos_size"] = 0.54        # micro-meters
-parameter["sa_inv_nmos_size"] = 0.27        # micro-meters
-parameter["bitcell_drain_cap"] = 0.1        # In Femto-Farad, approximation of drain capacitance
+parameter["dff_clk_cin"] = 0.4              # relative capacitance
+parameter["6tcell_wl_cin"] = 0.08           # relative capacitance
+parameter["min_inv_para_delay"] = 6.8       # Tau delay units
+parameter["sa_en_pmos_size"] = 0.34         # micro-meters
+parameter["sa_en_nmos_size"] = 0.34         # micro-meters
+parameter["sa_inv_pmos_size"] = 0.17        # micro-meters
+parameter["sa_inv_nmos_size"] = 0.14        # micro-meters
+parameter["bitcell_drain_cap"] = 0.36       # In Femto-Farad, approximation of drain capacitance
 
 # Spice Values uses to calculate analytical delay based on CACTI equations
-spice["i_on_n"] = 0.0004463 # A/um
-spice["i_on_p"] = 0.0000771   # A/um
-spice["tox"] = 0.00114        # microns
-spice["eps_ox"] = 0.00245e-14  # F/um, calculated from CACTI 45nm data
+spice["i_on_n"] = 0.0004463 # A/um unknown for 28nm
+spice["i_on_p"] = 0.0000771 # A/um unknown for 28nm
+spice["tox"] = 0.003        # microns "toxp=3nm for 28nm"
+spice["eps_ox"] = 0.00245e-14  # F/um, calculated from CACTI 45nm data -> unknown for 28nm
 spice["cox"] = spice["eps_ox"]/spice["tox"] # F/um^2
 spice["c_g_ideal"] = spice["cox"]*drc["minlength_channel"] # F/um
 spice["c_overlap"] = 0.2*spice["c_g_ideal"] # F/um
@@ -611,8 +611,8 @@ spice["c_junc"] = 5e-16 #F/um^2
 spice["c_junc_sw"] = 5e-16 #F/um
 spice["wire_c_per_um"] = spice["wire_unit_c"]*drc["minwidth_m2"] # Unit c by m2 width,  F/um units
 spice["wire_r_per_um"] = spice["wire_unit_r"]/drc["minwidth_m2"] # Unit r per m2 width, Ohms/um units
-spice["mobility_n"] = 0.045e8   # um^2/(V*s)
-spice["V_dsat"] = 0.0938        # From CACTI 45nm tech
+spice["mobility_n"] = 0.045e8   # um^2/(V*s) not referenced
+spice["V_dsat"] = 0.0938        # not referenced
 spice["sa_transconductance"] = (spice["mobility_n"])*spice["cox"]*(parameter["sa_inv_nmos_size"]/parameter["min_tx_size"])*spice["V_dsat"]
 ###################################################
 # Technology Tool Preferences
