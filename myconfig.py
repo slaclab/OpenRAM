@@ -4,22 +4,22 @@ word_size = 32
 num_words = 16
 
 # num_spare_cols = 1
-num_rw_ports = 2
+num_rw_ports = 1
 
 # This is the technology directory.
-openram_tech = "skywater-pdk"
+openram_tech = "TSMC28HPC+" #"skywater-pdk"
 # This is the name of the technology.
-tech_name = "sky130"
+tech_name =  "TSMC28HPC+" #"sky130"
 
 # Process corners to characterize
 process_corners = [ "TT" ]
 # Voltage corners to characterize
-supply_voltages = [ 3.3 ]
+supply_voltages = [ 0.9 ]#[ 3.3 ]
 # Temperature corners to characterize
 temperatures = [ 25 ]
 
 # Output directory for the results
-output_path = "temp2"
+output_path = "temp_28"
 # Output file base name
 output_name = "sram_16x2"
 
@@ -28,9 +28,9 @@ output_name = "sram_16x2"
 
 # To force this to use magic and netgen for DRC/LVS/PEX
 # Could be calibre for FreePDK45
-drc_name = "magic"
-lvs_name = "netgen"
-pex_name = "magic"
+drc_name = "calibre" #"magic"
+lvs_name = "calibre" #"netgen"
+pex_name = "calibre" #"magic"
 # Activate LVS/DRC/PEX
 check_lvsdrc = True
 

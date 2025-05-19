@@ -230,6 +230,16 @@ class spice():
             f.close()
 
             # find the correct subckt line in the file
+            
+            #### for debug purposes ####
+            subckt_check = [line for line in self.spice if re.search(r'^\s*\.subckt\b', line, re.IGNORECASE)]
+            if not subckt_check:
+                raise ValueError(f"No .subckt lines found at all in {self.sp_file}")
+            debug.info(3, "Found .subckt lines:")
+            for line in subckt_check:
+                debug.info(3, f"    {line}")
+            #### end of debug lines ####
+            
             subckt = re.compile("^.subckt {}".format(self.cell_name), re.IGNORECASE)
             subckt_line = list(filter(subckt.search, self.spice))[0]
             # parses line into ports and remove subckt

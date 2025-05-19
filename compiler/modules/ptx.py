@@ -251,6 +251,8 @@ class ptx(design):
                     "Minimum active area violated.")
         # We do not want to increase the poly dimensions to fix
         # an area problem as it would cause an LVS issue.
+        # Use for Debugging. Added by HK.
+        #print(self.poly_width, self.poly_height, self.poly_width * self.poly_height)
         debug.check(self.poly_width * self.poly_height >= self.minarea_poly,
                     "Minimum poly area violated.")
 

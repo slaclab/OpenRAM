@@ -15,20 +15,21 @@ import sys
 import os
 from openram import debug
 
-TECHNOLOGY = "TSMC28_PDK"
-
+TECHNOLOGY = "TSMC28HPC+"
+#PDK_PATH = "/u1/TSMC28HPC+"
 ##########################
 # *** Below doesn't work for tsmcN28. Keep it commented ***
 # Cadence tsmcN28 paths
-#PDK_PATH=os.environ.get("tsmcN28")
+PDK_PATH=os.environ.get("PDK_FOLDER")
+print(PDK_PATH)
 #if PDK_PATH==None:
 #    debug.error("Must define FREEPDK45 to point to PDK.", -1)
-#PDK_DIR=os.path.abspath(os.path.expanduser(PDK_PATH))
-#os.environ["PDK_DIR"] = PDK_DIR
-#os.environ["SYSTEM_CDS_LIB_DIR"] = "{0}/ncsu_basekit/cdssetup".format(PDK_DIR)
-#os.environ["CDS_SITE"] = PDK_DIR
-#os.environ["MGC_TMPDIR"] = "/tmp"
-#os.environ["SYSTEM_CDS_LIB_DIR"] = "{0}/ncsu_basekit/cdssetup".format(PDK_DIR)
+PDK_DIR=os.path.abspath(PDK_PATH)
+os.environ["PDK_DIR"] = PDK_DIR
+os.environ["SYSTEM_CDS_LIB_DIR"] = "{0}/ncsu_basekit/cdssetup".format(PDK_DIR)
+os.environ["CDS_SITE"] = PDK_DIR
+os.environ["MGC_TMPDIR"] = "/tmp"
+os.environ["SYSTEM_CDS_LIB_DIR"] = "{0}/ncsu_basekit/cdssetup".format(PDK_DIR)
 
 ###########################
 #OpenRAM Paths

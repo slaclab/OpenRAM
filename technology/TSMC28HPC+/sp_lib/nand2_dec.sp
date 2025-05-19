@@ -1,0 +1,1 @@
+/u1/hyunjkim/asic-data-operation/LDRD_ADO/SP_LIB/nand2_dec.sp
