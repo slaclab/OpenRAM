@@ -198,6 +198,15 @@ class cell_properties():
         self._inv_dec = cell(["A", "Z", "vdd", "gnd"],
                               ["INPUT", "OUTPUT", "POWER", "GROUND"])
 
+        self._and2_dec = cell(["A", "B", "Z", "vdd", "gnd"],
+                                ["INPUT", "INPUT", "OUTPUT", "POWER", "GROUND"])
+
+        self._and3_dec = cell(["A", "B", "C", "Z", "vdd", "gnd"],
+                                ["INPUT", "INPUT", "INPUT", "OUTPUT", "POWER", "GROUND"])
+
+        self._and4_dec = cell(["A", "B", "C", "D", "Z", "vdd", "gnd"],
+                                ["INPUT", "INPUT", "INPUT", "INPUT", "OUTPUT", "POWER", "GROUND"])
+
         self._nand2_dec = cell(["A", "B", "Z", "vdd", "gnd"],
                                 ["INPUT", "INPUT", "OUTPUT", "POWER", "GROUND"])
 
@@ -251,6 +260,18 @@ class cell_properties():
     @property
     def inv_dec(self):
         return self._inv_dec
+
+    @property
+    def and2_dec(self):
+        return self._and2_dec
+
+    @property
+    def and3_dec(self):
+        return self._and3_dec
+
+    @property
+    def and4_dec(self):
+        return self._and4_dec
 
     @property
     def nand2_dec(self):

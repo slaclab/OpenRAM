@@ -16,8 +16,9 @@ class inv_dec(design):
     INV for address decoders.
     """
 
-    def __init__(self, name="inv_dec", height=None):
+    def __init__(self, name="inv_dec", height=None, size=1):
         super().__init__(name, prop=props.inv_dec)
+        self.size=size
 
     def analytical_power(self, corner, load):
         """Returns dynamic and leakage power. Results in nW"""

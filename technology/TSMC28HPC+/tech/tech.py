@@ -46,10 +46,86 @@ tech_modules["and4_dec"] = "and4_dec"
 # Custom cell properties
 ###################################################
 cell_properties = d.cell_properties()
+
+cell_properties.inv_dec.port_order = ['A', 'Z', 'vdd', 'gnd']
+cell_properties.inv_dec.port_map = {'A': 'A',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.and2_dec.port_order = ['A', 'B', 'Z', 'vdd', 'gnd']
+cell_properties.and2_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.and3_dec.port_order = ['A', 'B', 'C', 'Z', 'vdd', 'gnd']
+cell_properties.and3_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'C': 'C',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.and4_dec.port_order = ['A', 'B', 'C', 'D', 'Z', 'vdd', 'gnd']
+cell_properties.and4_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'C': 'C',
+                                      'D': 'D',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+
+cell_properties.dff.port_order = ['D', 'Q', 'clk', 'vdd', 'gnd']
+cell_properties.dff.port_map = {'D': 'D',
+                                'Q': 'Q',
+                                'clk': 'CLK',
+                                'vdd': 'VDD',
+                                'gnd': 'GND'}
+
+cell_properties.nand2_dec.port_order = ['A', 'B', 'Z', 'vdd', 'gnd']
+cell_properties.nand2_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.nand3_dec.port_order = ['A', 'B', 'C', 'Z', 'vdd', 'gnd']
+cell_properties.nand3_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'C': 'C',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.nand4_dec.port_order = ['A', 'B', 'C', 'D', 'Z', 'vdd', 'gnd']
+cell_properties.nand4_dec.port_map = {'A': 'A',
+                                      'B': 'B',
+                                      'C': 'C',
+                                      'D': 'D',
+                                      'Z': 'Z',
+                                      'vdd': 'vdd',
+                                      'gnd': 'gnd'}
+
+cell_properties.write_driver.port_order = ['din', 'bl', 'br', 'en', 'vdd', 'gnd']
+cell_properties.write_driver.port_map = {'din': 'DIN',
+                                         'bl': 'BL',
+                                         'br': 'BR',
+                                         'en': 'EN',
+                                         'vdd': 'vdd',
+                                         'gnd': 'gnd'}
+
 cell_properties.names["dff"] = "dff"
 cell_properties.names["nand2_dec"] = "nand2_dec"
 cell_properties.names["nand3_dec"] = "nand3_dec"
 cell_properties.names["nand4_dec"] = "nand4_dec"
+
+cell_properties.names["inv_dec"] = "inv_dec"
+cell_properties.names["and2_dec"] = "and2_dec"
+cell_properties.names["and3_dec"] = "and3_dec"
+cell_properties.names["and4_dec"] = "and4_dec"
 
 cell_properties.names["sense_amp"] = "sense_amp"
 cell_properties.names["write_driver"] = "write_driver"
@@ -204,9 +280,12 @@ layer_names["boundary"] = "prBoundary"
 ###################################################
 
 #technology parameter
+# "beta" is the scale factor for pmos.
+# typically, nmos to pmos ratio in a unit inverter is 1~1.3x
+# for our project, we will use 1x
 parameter={}
 parameter["min_tx_size"] = 0.1
-parameter["beta"] = 15.85
+parameter["beta"] = 1
 
 parameter["6T_inv_nmos_size"] = 0.1
 parameter["6T_inv_pmos_size"] = 0.1
@@ -349,6 +428,7 @@ drc.add_layer("via1",
               width=0.05,
               spacing=0.08)
 
+drc["m1_to_m1"]=0.05
 
 # Mx.W.1 Minimum width of intermediate metal
 # Mx.S.1 Minimum spacing of intermediate metal
