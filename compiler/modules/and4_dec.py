@@ -10,6 +10,8 @@ from openram.base import design
 from openram.base import vector
 from openram.sram_factory import factory
 from openram.tech import layer
+from openram.tech import cell_properties as props
+from openram.tech import tech_node as node
 from openram import OPTS
 
 
@@ -18,17 +20,20 @@ class and4_dec(design):
     This is an AND with configurable drive strength.
     """
     def __init__(self, name, size=1, height=None, add_wells=True):
+        if (node == "TSMC28HPC+"):
+            super().__init__(name, prop=props.and4_dec)
+            debug.info(2, "Create and4_dec")
+        else:
+            design.__init__(self, name)
 
-        design.__init__(self, name)
+            debug.info(1, "Creating and4_dec {}".format(name))
+            self.add_comment("size: {}".format(size))
+            self.size = size
+            self.height = height
 
-        debug.info(1, "Creating and4_dec {}".format(name))
-        self.add_comment("size: {}".format(size))
-        self.size = size
-        self.height = height
-
-        self.create_netlist()
-        if not OPTS.netlist_only:
-            self.create_layout()
+            self.create_netlist()
+            if not OPTS.netlist_only:
+                self.create_layout()
 
     def create_netlist(self):
         self.add_pins()

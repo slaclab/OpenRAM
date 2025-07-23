@@ -19,7 +19,7 @@ File containing the process technology parameters for TSMC 28nm.
 ###################################################
 # Custom modules
 ###################################################
-
+tech_node = "TSMC28HPC+"
 # This uses the default classes to instantiate module from
 # '$OPENRAM_HOME/compiler/modules'.
 # Using tech_modules['cellname'] you can override each class by providing a custom

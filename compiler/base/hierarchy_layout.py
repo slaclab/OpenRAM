@@ -582,6 +582,7 @@ class layout():
             return any_pin
         except Exception:
             self.gds_write("missing_pin.gds")
+            print(self.gds_file)
             debug.error("No pin found with name {0} on {1}. Saved as missing_pin.gds.".format(name, self.cell_name), -1)
 
     def get_pins(self, text):
